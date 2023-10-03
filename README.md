@@ -65,6 +65,7 @@ select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
 ```
 select count(*) from pg_stat_replication;
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/6805d5a2-b46d-466a-b4c0-847675e344f9)
 
 ### Проверьте работоспособность репликации в кластере
 
@@ -75,24 +76,31 @@ CREATE TABLE test_table(text varchar);
 ```
 insert into test_table values('Строка 1');
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/dd5a3d9f-86ce-4a61-9292-7c706fc5ec42)
 
 * Выйдите из psql командой ```\q```.
 
 * Теперь подключитесь к узлу-реплике. Для этого из команды подключения удалите атрибут ```target_session_attrs```  и в параметре атрибут ```host``` передайте только имя хоста-реплики. Роли хостов можно посмотреть на соответствующей вкладке UI консоли.
 
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/b579f190-7205-404c-a8fa-2b553be20bca)
+
 * Проверьте, что подключение прошло к узлу-реплике.
 ```
 select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/e0175aee-4e03-46cd-b348-390e5bb568d7)
+
 * Проверьте состояние репликации
 ```
 select status from pg_stat_wal_receiver;
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/dc8115b0-1bae-461d-ae83-f81c8a098870)
 
 * Для проверки, что механизм репликации данных работает между зонами доступности облака, выполните запрос к таблице, созданной на предыдущем шаге:
 ```
 select * from test_table;
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/b6c360d0-ab4c-4792-abd1-95e89cd73dc0)
 
 *В качестве результата вашей работы пришлите скриншоты:*
 
