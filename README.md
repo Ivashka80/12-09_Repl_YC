@@ -44,18 +44,23 @@
 
 * Нажмите кнопку «Создать кластер» и дождитесь окончания процесса создания, статус кластера = RUNNING. Кластер создаётся от 5 до 10 минут.
 
-![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/67d5f242-94d4-4836-be79-703609004e17)
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/152c8057-70ea-4e2d-bbc6-ada45904c239)
 
-![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/7f03b3d8-4e5d-4186-8fdb-d6059414f5c3)
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/a17a967a-ec37-4825-ae3b-9cb71335bf92)
 
 #### Подключение к мастеру и реплике 
 
 * Используйте инструкцию по подключению к кластеру, доступную на вкладке «Обзор»: cкачайте SSL-сертификат и подключитесь к кластеру с помощью утилиты psql, указав hostname всех узлов и атрибут ```target_session_attrs=read-write```.
 
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/88490b11-b3ce-4c2f-92f5-df9133752cd8)
+
+
 * Проверьте, что подключение прошло к master-узлу.
 ```
 select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
 ```
+![image](https://github.com/Ivashka80/12-09_Repl_YC/assets/121082757/86218dfd-3d0a-4b90-b287-a81ea435e349)
+
 * Посмотрите количество подключенных реплик:
 ```
 select count(*) from pg_stat_replication;
